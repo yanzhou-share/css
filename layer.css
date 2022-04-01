@@ -1,0 +1,78 @@
+/* @layer 简单而言@layer 声明了一个级联层，同一层的规则级联在一起，给与开发者对层叠机制的更多控制
+创建layer 最大的功能就是用于控制不同样式之间的优先级*/
+@layer utilities {
+
+}
+
+@layer A{
+    div {
+        background: blue;
+    }
+}
+
+@layer B {
+    div {
+        background: green
+    }
+}
+
+/* 由于@layer B 在 @layer A 之后，所以B 的优先级比A要高 */
+
+@layer B, C, A;
+
+@layer A{
+    div {
+        background: blue;
+    }
+}
+
+@layer B {
+    div {
+        background: green;
+    }
+}
+
+@layer C {
+    div {
+        background: yellow;
+    }
+}
+
+/* 以上的优先级为： A > C > B,所以最后显示blue */
+
+/* 非@layer 包裹层比@layer 包裹优先级要高 */
+
+@layer A {a {color: red;}}
+@layer B {a {color: orange;}}
+
+a {color: yellow;}
+
+/* 未包裹的样式 > B > A */
+
+/* 可创建匿名层 
+有两个主要特性：
+1、创建后无法向其添加规则
+2、和命名层功能一致，优先级遵循后定义的优先级高
+*/
+
+@layer A{
+    div {
+        background: red;
+    }
+}
+
+@layer B {
+    div {
+        background: yellow;
+    }
+}
+
+@layer {
+    div {
+        background: pink;
+    }
+}
+
+/* 最后显示为pink */
+
+/* !important 优先级高于非important之上 */
