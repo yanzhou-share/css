@@ -1,0 +1,22 @@
+/* 如果遇见了 3 的倍数要说 Fizz，5 的倍数就说 Buzz，如果既是 3 的倍数又是 5 的倍数就说 FizzBuzz。 */
+
+li {
+    list-style-type: unset;
+    counter-increment: fizzbuzz;
+}
+
+li::before {
+    content: counter(fizzbuzz);
+}
+
+li:nth-child(3n)::before{
+    content: "buzz";
+}
+
+li:nth-child(5n)::before {
+    content: "fizz";
+}
+
+li:nth-child(15n)::before{
+    content: "fizzbuzz";
+}
